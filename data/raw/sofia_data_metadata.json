@@ -1,0 +1,93 @@
+{
+    "station_id": "15614",
+    "station_name": "Sofia Observ.",
+    "start_date": "1952-01-01",
+    "end_date": "2025-08-22",
+    "parameters": [
+        "mean temperature",
+        "minimum temperature",
+        "maximum temperature"
+    ],
+    "request_method": "10-year chunks",
+    "metadata": {
+        "providers": [
+            "dwd_mosmix",
+            "dwd_poi",
+            "ghcnd",
+            "isd_lite",
+            "metar"
+        ],
+        "licenses": [
+            {
+                "name": "CC0 1.0 Universal",
+                "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+                "commercial": true,
+                "attribution": null
+            },
+            {
+                "name": null,
+                "url": null,
+                "commercial": true,
+                "attribution": null
+            },
+            {
+                "name": "CC BY 4.0",
+                "url": "https://creativecommons.org/licenses/by/4.0/",
+                "commercial": true,
+                "attribution": "Deutscher Wetterdienst"
+            }
+        ],
+        "attributions": [
+            "Meteostat",
+            "Meteostat, Deutscher Wetterdienst"
+        ],
+        "commercial_use": [
+            true
+        ],
+        "sources_by_column": {
+            "temp_source": [
+                "ghcnd",
+                "isd_lite",
+                "isd_lite dwd_mosmix",
+                "isd_lite dwd_mosmix metar",
+                "isd_lite dwd_poi",
+                "isd_lite dwd_poi dwd_mosmix",
+                "isd_lite dwd_poi metar",
+                "isd_lite metar",
+                "isd_lite metar dwd_poi",
+                "metar dwd_poi",
+                "metar dwd_poi isd_lite"
+            ],
+            "tmin_source": [
+                "ghcnd",
+                "isd_lite",
+                "isd_lite dwd_mosmix",
+                "isd_lite dwd_mosmix metar",
+                "isd_lite dwd_poi",
+                "isd_lite dwd_poi dwd_mosmix",
+                "isd_lite dwd_poi dwd_mosmix metar",
+                "isd_lite dwd_poi metar",
+                "isd_lite dwd_poi metar dwd_mosmix",
+                "isd_lite metar",
+                "isd_lite metar dwd_poi",
+                "isd_lite metar dwd_poi dwd_mosmix",
+                "metar dwd_poi",
+                "metar dwd_poi isd_lite",
+                "metar isd_lite dwd_poi"
+            ],
+            "tmax_source": [
+                "ghcnd",
+                "isd_lite",
+                "isd_lite dwd_mosmix",
+                "isd_lite dwd_mosmix metar",
+                "isd_lite dwd_poi",
+                "isd_lite dwd_poi dwd_mosmix",
+                "isd_lite dwd_poi metar",
+                "isd_lite metar",
+                "isd_lite metar dwd_poi",
+                "metar dwd_poi",
+                "metar dwd_poi isd_lite"
+            ]
+        }
+    }
+}
