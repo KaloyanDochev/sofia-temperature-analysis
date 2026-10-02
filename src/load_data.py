@@ -5,7 +5,6 @@ import json
 import meteostat as ms
 import pandas as pd
 
-
 STATION_ID = "15614"
 START_DATE = date(1952, 1, 1)
 END_DATE = date(2025, 8, 22)
@@ -23,8 +22,8 @@ def get_data():
 
     while current_start <= END_DATE:
         current_end = min(
-            date(current_start.year + 10, current_start.month, current_start.day)
-            - timedelta(days=1),
+            date(current_start.year + 10, current_start.month,
+                 current_start.day) - timedelta(days=1),
             END_DATE,
         )
 
@@ -50,8 +49,7 @@ def get_data():
 
         if df.empty:
             raise RuntimeError(
-                f"No data returned for {current_start} to {current_end}."
-            )
+                f"No data returned for {current_start} to {current_end}.")
 
         dataframes.append(df)
         time_series.append(ts)
@@ -61,8 +59,10 @@ def get_data():
     combined_df = pd.concat(dataframes)
     combined_df = combined_df[~combined_df.index.duplicated(keep="first")]
     combined_df = combined_df.sort_index()
+    combined_df = combined_df.reset_index()
 
     return time_series, combined_df
+
 
 def get_metadata(ts, df):
     providers = set()
@@ -71,26 +71,16 @@ def get_metadata(ts, df):
     commercial_use = set()
 
     source_columns = [
-        column
-        for column in df.columns
-        if column.endswith("_source")
+        column for column in df.columns if column.endswith("_source")
     ]
 
     sources_by_column = {
-        column: sorted(
-            df[column]
-            .dropna()
-            .unique()
-            .tolist()
-        )
+        column: sorted(df[column].dropna().unique().tolist())
         for column in source_columns
     }
 
     for current_ts in ts:
-        providers.update(
-            str(provider)
-            for provider in current_ts.providers
-        )
+        providers.update(str(provider) for provider in current_ts.providers)
 
         if current_ts.attribution:
             attributions.add(current_ts.attribution)
@@ -132,17 +122,23 @@ def main():
     df.to_csv(DATA_FILE, index=False)
 
     metadata_file_content = {
-        "station_id": STATION_ID,
-        "station_name": "Sofia Observ.",
-        "start_date": str(START_DATE),
-        "end_date": str(END_DATE),
+        "station_id":
+        STATION_ID,
+        "station_name":
+        "Sofia Observ.",
+        "start_date":
+        str(START_DATE),
+        "end_date":
+        str(END_DATE),
         "parameters": [
             "mean temperature",
             "minimum temperature",
             "maximum temperature",
         ],
-        "request_method": "10-year chunks",
-        "metadata": metadata,
+        "request_method":
+        "10-year chunks",
+        "metadata":
+        metadata,
     }
 
     METADATA_FILE.write_text(
@@ -157,6 +153,7 @@ def main():
     print(f"Metadata saved: {METADATA_FILE}")
     print(f"Rows: {len(df):,}")
     print("Done.")
+
 
 if __name__ == "__main__":
     main()
